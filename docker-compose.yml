@@ -9,7 +9,8 @@ services:
       context: .
       dockerfile: Dockerfile
     image: 'airdb/openresty:latest'
-    command: sleep 3600
+    command: openresty
+    #command: sleep 3600
     volumes:
       - ./:/srv/waf
       - ./ipdb:/usr/local/openresty/lualib/resty/ipdb
