@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  openresty:
+    platform: linux/amd64
+    container_name: openresty
+    working_dir: /usr/local/openresty/lualib/resty/ipdb
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: 'airdb/openresty:latest'
+    command: sleep 3600
+    volumes:
+      - ./:/srv/waf
+      - ./ipdb:/usr/local/openresty/lualib/resty/ipdb
+      - ./ipdb/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
+    ports:
+      - "8088:8080"
+    environment:
+      - env=test
